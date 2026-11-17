@@ -1,0 +1,41 @@
+{
+  "SAMPLE_PART_A": {
+    "name": "샘플 부품 A",
+    "sub_folder": "",
+    "signature": [
+      "직경 (1) Ø10.0",
+      "직경 (2) Ø5.0",
+      "위치 Z (3) 전장"
+    ],
+    "data_ranges": [
+      [
+        "8-20"
+      ]
+    ],
+    "excel_mapping": [
+      {
+        "block_name": "샘플 부품 A 엑셀",
+        "mappings": [
+          {
+            "row_idx": 1,
+            "source_type": "pdf_idx",
+            "value_source": 0,
+            "label": "직경 1"
+          },
+          {
+            "row_idx": 2,
+            "source_type": "pdf_idx",
+            "value_source": 1,
+            "label": "직경 2"
+          },
+          {
+            "row_idx": 3,
+            "source_type": "pdf_idx",
+            "value_source": 2,
+            "label": "전장"
+          }
+        ]
+      }
+    ]
+  }
+}

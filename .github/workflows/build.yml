@@ -1,0 +1,49 @@
+name: Build & Release
+
+on:
+  push:
+    tags:
+      - 'v*'   # v4.5.2 형태의 태그를 push할 때만 실행
+
+jobs:
+  build:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: 코드 받기
+        uses: actions/checkout@v4
+
+      - name: Python 3.8 설치
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.8'
+
+      - name: 의존성 캐시 (빌드 속도 향상)
+        uses: actions/cache@v4
+        with:
+          path: ~\AppData\Local\pip\Cache
+          key: pip-${{ hashFiles('requirements-build.txt') }}
+
+      - name: 패키지 설치
+        run: pip install -r requirements-build.txt
+
+      - name: PyInstaller 빌드
+        run: python -m PyInstaller AZtech.spec --noconfirm
+        env:
+          PYTHONIOENCODING: utf-8
+          PYTHONUTF8: "1"
+
+      - name: 버전 읽기
+        id: version
+        run: |
+          $v = python -c "import importlib.util; s=importlib.util.spec_from_file_location('v','config/version.py'); m=importlib.util.module_from_spec(s); s.loader.exec_module(m); print(m.APP_VERSION)"
+          echo "APP_VERSION=$v" >> $env:GITHUB_OUTPUT
+
+      - name: GitHub Releases에 업로드
+        uses: softprops/action-gh-release@v2
+        with:
+          name: "AZtech v${{ steps.version.outputs.APP_VERSION }}"
+          body: "자동 빌드 — ${{ github.ref_name }}"
+          files: dist/AZtech.exe

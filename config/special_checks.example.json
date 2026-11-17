@@ -1,0 +1,16 @@
+{
+  "SAMPLE_PART_A": [
+    {
+      "id": "기준원_편차_예시",
+      "type": "deviation",
+      "label": "기준원 편차 확인 (예시)",
+      "part_idx": 0,
+      "index_a": 1,
+      "index_b": 0,
+      "label_a": "기준원2",
+      "label_b": "기준원1",
+      "threshold": 0.004,
+      "alert_message": "⚠️ 예시: 두 기준원의 편차가 4μm 이상입니다."
+    }
+  ]
+}

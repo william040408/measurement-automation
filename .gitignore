@@ -1,0 +1,41 @@
+# Python
+__pycache__/
+*.py[cod]
+venv/
+venv38/
+
+# Build & Dist
+build/
+dist/
+
+# User Data (사원님의 개인 기록이 담긴 파일들)
+assets/data/user_history.json
+config/app_settings.json
+config/user_history.json
+# 서버 런타임 생성 파일 (PC별 설정 서브폴더만 제외)
+config/*/
+
+# Input/Output (테스트용 PDF들 및 처리 결과)
+watch_input/*
+processed_pdf/*
+processed_output/*
+fail_output/*
+helper_outputs/
+samples/
+!watch_input/.gitkeep
+
+# 개발/디버그 전용 (배포 불필요)
+development/
+
+# 런타임 자동 생성 폴더
+watch_folder/
+ocr_reports/
+
+# Claude Code 설정
+.claude/
+
+# 회사 실제 데이터 (공개 저장소에 올리지 않음 — 예시 파일만 커밋)
+assets/data/parts_registry_v2.json
+assets/data/old_registry.json
+config/special_checks.json
+아즈텍-로고.png
